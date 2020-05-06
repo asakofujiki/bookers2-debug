@@ -1,20 +1,44 @@
 <h1>Search#search</h1>
-<h2>Users</h2>
-<table>
-	<thead>
-		<tr>
-			<th>image</th>
-			<th>name</th>
-			<th colspan="1"></th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @users.each do |user| %>
+<% if @users.present? %>
+	<h2>Users</h2>
+	<table>
+		<thead>
 			<tr>
-				<td><%= user.name %></td>
-				<td><%= user.name %></td>
-				<td>show</td>
+				<th>image</th>
+				<th>name</th>
+				<th colspan="1"></th>
 			</tr>
-		<% end %>
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			<% @users.each do |user| %>
+				<tr>
+					<td><%= user.name %></td>
+					<td><%= user.name %></td>
+					<td>show</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% elsif @books.present?  %>
+	<h2>Books</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>image</th>
+				<th>title</th>
+				<th colspan="1"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @books.each do |book| %>
+				<tr>
+					<td><%= book.user.name %></td>
+					<td><%= book.title %></td>
+					<td>show</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% else %>
+<P>検索結果はありませんでした</P>
+<% end %>

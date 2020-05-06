@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
   def search
   	if params[:model] == 'user'
-	  	if params[:type] == 'perfect_macth'
+	  	if params[:type] == 'perfect_match'
 		  	@users = User.where(name: params[:term])
 	    elsif params[:type] == 'part_match'
 		  	@users = User.where('name like ?', "%#{params[:term]}%")
@@ -11,7 +11,7 @@ class SearchController < ApplicationController
 			@users = User.where('name like ?', "%#{params[:term]}")
 		end
 	else params[:model] == 'book'
-		if params[:type] == 'perfect_macth'
+		if params[:type] == 'perfect_match'
 			@books = Book.where(title: params[:term])
 		elsif params[:type] == 'part_match'
 			@books = Book.where('title like ?', "%#{params[:term]}%")
