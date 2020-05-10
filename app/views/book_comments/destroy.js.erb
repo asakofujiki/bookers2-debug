@@ -1,1 +1,2 @@
+$("#counts_<%=@book.id %>").html ("<%= j(render partial: 'counts', locals: {book: @book}) %>");
 $("#comments_<%=@book.id %>").html ("<%= j(render partial: 'comments', locals: {book_comments: @book_comments}) %>");

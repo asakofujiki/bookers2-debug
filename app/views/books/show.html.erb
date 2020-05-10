@@ -28,19 +28,25 @@
 						<%= render partial: 'favorites/favorite', locals: {book: @book} %>
 					</td>
 					<!-- いいね非同期通信 -->
-					<td>
-						コメント数：<%= @book.book_comments.count %>
+					<!-- コメント数の非同期 -->
+					<td id="counts_<%= @book.id %>">
+						<%= render partial: 'book_comments/counts', locals: {book: @book} %>
 					</td>
+					<!-- コメント数の非同期 -->
 					<% if @book.user == current_user %>
 					<td><%= link_to "Edit",edit_book_path(@book), class: "btn-sm btn-success edit_book_#{@book.id}" %></td>
 					<td><%= link_to "Destroy",@book, method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger destroy_book_#{@book.id}" %></td>
 					<% end %>
 				</tr>
 			</table>
+			<!-- コメント一覧の非同期 -->
 			<ol id="comments_<%= @book.id %>">
-					<%= render partial: 'book_comments/comments', locals: {book_comments: @book_comments} %>
+					<%= render partial: 'book_comments/comments', locals: {book_comments: @book_comments, book: @book} %>
 			</ol>
+			<!-- コメント一覧の非同期	-->
+			<!-- コメントフォームの非同期 -->
 				<%= render partial: 'book_comments/form', locals: {comment: @comment, book: @book} %>
+			<!-- コメントフォームの非同期 -->
 </div>
 
 
