@@ -37,26 +37,10 @@
 					<% end %>
 				</tr>
 			</table>
-			<ol>
-				<% @book.book_comments.each do |book_comment| %>
-				<li class="comment">
-					<div class="comment-text">
-						<div class="comment-author clearfix">
-							<%= book_comment.user.name %>
-							<span><%= book_comment.created_at.strftime('%Y/%m/%d') %></span>
-						</div>
-						<div class="comment-entry"> <%= book_comment.comment %></div>
-					</div>
-					<% if book_comment.user == current_user %>
-					<span><%= link_to "削除", book_book_comment_path(@book), method: :delete %></span>
-					<% end %>
-				</li>
-				<% end %>
+			<ol id="comments_<%= @book.id %>">
+					<%= render partial: 'book_comments/comments', locals: {book_comments: @book_comments} %>
 			</ol>
-				<%= form_for [@book, @book_comment] do |f| %>
-					<%= f.text_area :comment %>
-					<%= f.submit "送信" %>
-				<% end %>
+				<%= render partial: 'book_comments/form', locals: {comment: @comment, book: @book} %>
 </div>
 
 
